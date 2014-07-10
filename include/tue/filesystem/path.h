@@ -27,7 +27,11 @@ public:
 
     Path& removeExtension();
 
-    Path& join(const Path& path);
+    Path withoutExtension() const;
+
+    Path join(const Path& path) const;
+
+    std::string filename() const;
 
     friend std::ostream& operator<< (std::ostream& out, const Path& p) {
         out << p.path_;

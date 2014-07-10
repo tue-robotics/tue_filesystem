@@ -32,27 +32,49 @@ std::string Path::extension() const
 
 // ----------------------------------------------------------------------------------------------------
 
+std::string Path::filename() const
+{
+    return boost::filesystem::path(path_).filename().string();
+}
+
+// ----------------------------------------------------------------------------------------------------
+
 Path& Path::removeExtension()
 {
     std::string ext = extension();
 
     if (!ext.empty())
-    {
         path_ = path_.substr(0, path_.size() - ext.size());
-    }
 
     return *this;
 }
 
 // ----------------------------------------------------------------------------------------------------
 
-Path& Path::join(const Path& path)
+Path Path::withoutExtension() const
 {
-    if (!path_.empty() && path_[path_.size() - 1] != '/')
-        path_ += '/';
+    std::string ext = extension();
 
-    path_ += path.path_;
-    return *this;
+    Path p;
+    if (!ext.empty())
+        p.path_ = path_.substr(0, path_.size() - ext.size());
+    else
+        p = *this;
+
+    return p;
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+Path Path::join(const Path& path) const
+{
+    Path p(*this);
+
+    if (!p.path_.empty() && p.path_[p.path_.size() - 1] != '/')
+        p.path_ += '/';
+
+    p.path_ += path.path_;
+    return p;
 }
 
 }
