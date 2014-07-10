@@ -7,13 +7,14 @@ namespace filesystem
 
 // ----------------------------------------------------------------------------------------------------
 
-Crawler::Crawler() : recursive_(true), ignore_hidden_dirs_ (true), ignore_hidden_files_(true)
+Crawler::Crawler() : recursive_(true), ignore_hidden_dirs_ (true), ignore_hidden_files_(true), list_dirs_(false), list_files_(true)
 {
 }
 
 // ----------------------------------------------------------------------------------------------------
 
-Crawler::Crawler(const Path& root_path) : recursive_(true), ignore_hidden_dirs_ (true), ignore_hidden_files_(true)
+Crawler::Crawler(const Path& root_path) : recursive_(true), ignore_hidden_dirs_ (true), ignore_hidden_files_(true),
+    list_dirs_(false), list_files_(true)
 {
     setRootPath(root_path);
 }
@@ -42,7 +43,7 @@ bool Crawler::nextPath(Path& path)
     {
         bool found = false;
 
-        if (boost::filesystem3::is_regular_file(*it_dir_))
+        if (list_files_ && boost::filesystem3::is_regular_file(*it_dir_))
         {
             if (!ignore_hidden_files_ || it_dir_->path().filename().string()[0] != '.')
             {
@@ -50,9 +51,23 @@ bool Crawler::nextPath(Path& path)
                 found = true;
             }
         }
-        else if (ignore_hidden_dirs_ && boost::filesystem::is_directory(*it_dir_) && it_dir_->path().filename().string()[0] == '.')
+        else if (boost::filesystem::is_directory(*it_dir_))
         {
-            it_dir_.no_push();
+            if (!ignore_hidden_dirs_ || it_dir_->path().filename().string()[0] != '.')
+            {
+                if (list_dirs_)
+                {
+                    path = it_dir_->path().string();
+                    found = true;
+                }
+
+                if (!recursive_)
+                    it_dir_.no_push();
+            }
+            else
+            {
+                it_dir_.no_push();
+            }
         }
 
         try
