@@ -25,6 +25,12 @@ public:
 
     std::string extension() const;
 
+    bool exists() const;
+
+    bool isRegularFile() const;
+
+    bool isDirectory() const;
+
     Path& removeExtension();
 
     Path withoutExtension() const;

@@ -39,6 +39,27 @@ std::string Path::filename() const
 
 // ----------------------------------------------------------------------------------------------------
 
+bool Path::exists() const
+{
+    return boost::filesystem::exists(boost::filesystem::path(path_));
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+bool Path::isRegularFile() const
+{
+    return boost::filesystem::is_regular_file(boost::filesystem::path(path_));
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+bool Path::isDirectory() const
+{
+    return boost::filesystem::is_directory(boost::filesystem::path(path_));
+}
+
+// ----------------------------------------------------------------------------------------------------
+
 Path& Path::removeExtension()
 {
     std::string ext = extension();
