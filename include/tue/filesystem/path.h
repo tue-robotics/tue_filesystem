@@ -2,6 +2,7 @@
 #define TUE_FILESYSTEM_PATH_H_
 
 #include <string>
+#include <ctime>
 
 namespace tue
 {
@@ -30,6 +31,8 @@ public:
     bool isRegularFile() const;
 
     bool isDirectory() const;
+
+    std::time_t lastWriteTime() const;
 
     Path& removeExtension();
 

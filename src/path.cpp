@@ -60,6 +60,13 @@ bool Path::isDirectory() const
 
 // ----------------------------------------------------------------------------------------------------
 
+std::time_t Path::lastWriteTime() const
+{
+    return boost::filesystem::last_write_time(boost::filesystem::path(path_));
+}
+
+// ----------------------------------------------------------------------------------------------------
+
 Path& Path::removeExtension()
 {
     std::string ext = extension();
