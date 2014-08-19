@@ -1,21 +1,14 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(tue_filesystem)
 
-## System dependencies are found with CMake's conventions
+find_package(catkin REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem)
 
-###################################
-## catkin specific configuration ##
-###################################
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES tue_filesystem
   DEPENDS system filesystem
 )
-
-###########
-## Build ##
-###########
 
 include_directories(
     include
