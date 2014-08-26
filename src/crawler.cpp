@@ -45,7 +45,7 @@ bool Crawler::nextPath(Path& path)
     {
         bool found = false;
 
-        if (list_files_ && boost::filesystem3::is_regular_file(*it_dir_))
+        if (list_files_ && boost::filesystem::is_regular_file(*it_dir_))
         {
             if (!ignore_hidden_files_ || it_dir_->path().filename().string()[0] != '.')
             {
