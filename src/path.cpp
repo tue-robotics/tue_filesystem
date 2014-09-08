@@ -39,6 +39,13 @@ std::string Path::filename() const
 
 // ----------------------------------------------------------------------------------------------------
 
+Path Path::parentPath() const
+{
+    return Path(boost::filesystem::path(path_).parent_path().string());
+}
+
+// ----------------------------------------------------------------------------------------------------
+
 bool Path::exists() const
 {
     return boost::filesystem::exists(boost::filesystem::path(path_));

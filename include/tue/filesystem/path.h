@@ -26,6 +26,8 @@ public:
 
     std::string extension() const;
 
+    Path parentPath() const;
+
     bool exists() const;
 
     bool isRegularFile() const;
