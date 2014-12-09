@@ -1,43 +1,43 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(tue_filesystem)
 
-# Set the build type.  Options are:
-#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
-#  Debug          : w/ debug symbols, w/o optimization
-#  Release        : w/o debug symbols, w/ optimization
-#  RelWithDebInfo : w/ debug symbols, w/ optimization
-#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
-#set(ROS_BUILD_TYPE RelWithDebInfo)
+## System dependencies are found with CMake's conventions
+find_package(Boost REQUIRED COMPONENTS system filesystem)
 
-rosbuild_init()
+###################################
+## catkin specific configuration ##
+###################################
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES tue_filesystem
+  DEPENDS system filesystem
+)
 
-#set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-#set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+###########
+## Build ##
+###########
 
-#uncomment if you have defined messages
-#rosbuild_genmsg()
-#uncomment if you have defined services
-#rosbuild_gensrv()
-
-#common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
-#target_link_libraries(example ${PROJECT_NAME})
+include_directories(
+    include
+)
 
 # to show header files in Qt Creator
 file(GLOB_RECURSE HEADER_FILES include/*.h)
 
-rosbuild_add_library(tue_filesystem
+## Declare a cpp library
+add_library(tue_filesystem
     src/path.cpp
     src/crawler.cpp
     ${HEADER_FILES}
 )
-rosbuild_link_boost(tue_filesystem filesystem system)
 
-rosbuild_add_executable(test_crawler test/test_crawler.cpp)
+# Specify libraries to link a library or executable target against
+target_link_libraries(tue_filesystem
+   ${Boost_LIBRARIES}
+)
+
+# Declare test
+add_executable(test_crawler test/test_crawler.cpp)
+
+# Specify libraries to link a library or executable target against
 target_link_libraries(test_crawler tue_filesystem)

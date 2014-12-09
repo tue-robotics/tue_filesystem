@@ -1,5 +1,7 @@
 #include <tue/filesystem/crawler.h>
 
+#include <iostream>
+
 int main(int argc, char **argv) {
 
     tue::filesystem::Crawler crawler(".");

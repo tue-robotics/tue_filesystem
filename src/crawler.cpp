@@ -1,5 +1,7 @@
 #include "tue/filesystem/crawler.h"
 
+#include <iostream>
+
 namespace tue
 {
 namespace filesystem
