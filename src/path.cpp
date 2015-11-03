@@ -41,7 +41,11 @@ std::string Path::filename() const
 
 Path Path::parentPath() const
 {
-    return Path(boost::filesystem::path(path_).parent_path().string());
+    std::string str = boost::filesystem::path(path_).parent_path().string();
+    if (str.empty())
+        str = ".";
+
+    return Path(str);
 }
 
 // ----------------------------------------------------------------------------------------------------
