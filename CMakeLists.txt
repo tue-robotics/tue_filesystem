@@ -7,7 +7,7 @@ find_package(Boost REQUIRED COMPONENTS system filesystem)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES tue_filesystem
-  DEPENDS system filesystem
+  DEPENDS Boost
 )
 
 include_directories(
