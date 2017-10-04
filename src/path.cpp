@@ -3,10 +3,8 @@
 #include "tue/filesystem/path.h"
 #include "boost/filesystem.hpp"
 
-namespace tue
-{
-namespace filesystem
-{
+namespace tue {
+namespace filesystem {
 
 /** Default constructor, without setting a valid path. */
 Path::Path()
@@ -51,8 +49,9 @@ std::string Path::filename() const
 Path Path::parentPath() const
 {
     std::string str = boost::filesystem::path(path_).parent_path().string();
-    if (str.empty())
+    if (str.empty()) {
         str = ".";
+    }
 
     return Path(str);
 }
@@ -104,8 +103,9 @@ Path& Path::removeExtension()
 {
     std::string ext = extension();
 
-    if (!ext.empty())
+    if (!ext.empty()) {
         path_ = path_.substr(0, path_.size() - ext.size());
+    }
 
     return *this;
 }
@@ -119,10 +119,11 @@ Path Path::withoutExtension() const
     std::string ext = extension();
 
     Path p;
-    if (!ext.empty())
+    if (!ext.empty()) {
         p.path_ = path_.substr(0, path_.size() - ext.size());
-    else
+    } else {
         p = *this;
+    }
 
     return p;
 }
@@ -136,8 +137,9 @@ Path Path::join(const Path& sub_path) const
 {
     Path p(*this);
 
-    if (!p.path_.empty() && p.path_[p.path_.size() - 1] != '/')
+    if (!p.path_.empty() && p.path_[p.path_.size() - 1] != '/') {
         p.path_ += '/';
+    }
 
     p.path_ += sub_path.path_;
     return p;

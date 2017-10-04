@@ -6,10 +6,8 @@
 #include "path.h"
 #include "boost/filesystem.hpp"
 
-namespace tue
-{
-namespace filesystem
-{
+namespace tue {
+namespace filesystem {
 
 /**
  * File system crawler, recursively walk over all files and directories in
@@ -28,31 +26,46 @@ public:
      * Enable or disable iterating over sub-directories.
      * @param b Whether to expand sub-directories too.
      */
-    void setRecursive(bool b = true) { recursive_ = b; }
+    void setRecursive(bool b = true)
+    {
+        recursive_ = b;
+    }
 
     /**
      * Enable or disable iterating over hidden directories.
      * @param b Whether to skip hidden directories.
      */
-    void setIgnoreHiddenDirectories(bool b = true) { ignore_hidden_dirs_ = b; }
+    void setIgnoreHiddenDirectories(bool b = true)
+    {
+        ignore_hidden_dirs_ = b;
+    }
 
     /**
      * Enable or disable iterating over hidden files.
      * @param b Whether to skip hidden files.
      */
-    void setIgnoreHiddenFiles(bool b = true) { ignore_hidden_files_ = b; }
+    void setIgnoreHiddenFiles(bool b = true)
+    {
+        ignore_hidden_files_ = b;
+    }
 
     /**
      * Enable or disable returning directories in the iterator.
      * @param b Whether directories should be returned in the iterator.
      */
-    void setListDirectories(bool b = true) { list_dirs_ = b; }
+    void setListDirectories(bool b = true)
+    {
+        list_dirs_ = b;
+    }
 
     /**
      * Enable or disable returning files in the iterator.
      * @param b Whether files should be returned in the iterator.
      */
-    void setListFiles(bool b = true) { list_files_ = b; }
+    void setListFiles(bool b = true)
+    {
+        list_files_ = b;
+    }
 
     bool nextPath(Path& path);
 

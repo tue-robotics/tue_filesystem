@@ -6,10 +6,8 @@
 #include <string>
 #include <ctime>
 
-namespace tue
-{
-namespace filesystem
-{
+namespace tue {
+namespace filesystem {
 
 /**
  * Path class for a file system path, providing several useful functions for querying
@@ -25,7 +23,9 @@ public:
      * Overloaded constructor for \code char* paths.
      * @param path Path to set in the object.
      */
-    Path(const char* path) : path_(path) {}
+    Path(const char* path) : path_(path)
+    {
+    }
 
     virtual ~Path();
 
@@ -33,7 +33,11 @@ public:
      * Get the complete path.
      * @return The entire path, as stored in in the object.
      */
-    const std::string& string() const { return path_; }
+    const std::string& string() const
+    {
+        return path_;
+    }
+
     std::string extension() const;
     std::string filename() const;
     Path parentPath() const;
