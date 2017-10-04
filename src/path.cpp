@@ -24,7 +24,7 @@ Path::~Path()
 
 /**
  * Get the last extension of the path if available.
- * @return The last extensionof the path including the leading dot, or the empty string.
+ * @return The last extension of the path including the leading dot, or the empty string.
  */
 std::string Path::extension() const
 {
