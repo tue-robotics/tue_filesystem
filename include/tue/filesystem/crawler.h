@@ -6,8 +6,10 @@
 #include "path.h"
 #include "boost/filesystem.hpp"
 
-namespace tue {
-namespace filesystem {
+namespace tue
+{
+namespace filesystem
+{
 
 /**
  * File system crawler, recursively walk over all files and directories in

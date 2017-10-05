@@ -3,8 +3,10 @@
 #include "tue/filesystem/crawler.h"
 #include <iostream>
 
-namespace tue {
-namespace filesystem {
+namespace tue
+{
+namespace filesystem
+{
 
 /**
  * Default constructor of the crawler iterator class.
@@ -52,40 +54,54 @@ bool Crawler::nextPath(Path& path)
 {
     boost::filesystem::recursive_directory_iterator end;
 
-    while(it_dir_ != end) {
+    while(it_dir_ != end)
+    {
         // Compute whether the current name should be returned to the caller.
         bool found = false;
-        if (list_files_ && boost::filesystem::is_regular_file(*it_dir_)) {
-            if (!ignore_hidden_files_ || it_dir_->path().filename().string()[0] != '.') {
+
+        if (list_files_ && boost::filesystem::is_regular_file(*it_dir_))
+        {
+            if (!ignore_hidden_files_ || it_dir_->path().filename().string()[0] != '.')
+            {
                 path = it_dir_->path().string();
                 found = true;
             }
-        } else if (boost::filesystem::is_directory(*it_dir_)) {
-            if (!ignore_hidden_dirs_ || it_dir_->path().filename().string()[0] != '.') {
-                if (list_dirs_) {
+        }
+        else if (boost::filesystem::is_directory(*it_dir_))
+        {
+            if (!ignore_hidden_dirs_ || it_dir_->path().filename().string()[0] != '.')
+            {
+                if (list_dirs_)
+                {
                     path = it_dir_->path().string();
                     found = true;
                 }
 
-                if (!recursive_) it_dir_.no_push();
-
-            } else {
+                if (!recursive_)
+                    it_dir_.no_push();
+            }
+            else
+            {
                 it_dir_.no_push();
             }
         }
 
         // Advance to the next file or directory.
-        try {
+        try
+        {
             ++it_dir_;
-
-        } catch(std::exception& ex) {
+        }
+        catch(std::exception& ex)
+        {
             // We couldn't access the next item in the collection, so we assume it refers to a directory that we can't
             // access and we ask the iterator class not to navigate in that directory but skip to the next element.
+
             std::cout << ex.what() << std::endl;
             it_dir_.no_push();
         }
 
-        if (found) return true;
+        if (found)
+            return true;
     }
 
     return false;

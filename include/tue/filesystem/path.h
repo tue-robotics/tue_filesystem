@@ -6,8 +6,10 @@
 #include <string>
 #include <ctime>
 
-namespace tue {
-namespace filesystem {
+namespace tue
+{
+namespace filesystem
+{
 
 /**
  * Path class for a file system path, providing several useful functions for querying
