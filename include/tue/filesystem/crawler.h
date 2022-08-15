@@ -18,10 +18,28 @@ namespace filesystem
 class Crawler
 {
 public:
+    /**
+     * Default constructor of the crawler iterator class.
+     * Creates an iterator that returns all non-hidden files in all non-hidden (sub-)directories.
+     * @note Root path must be set usng #setRootPath before usage.
+     */
     Crawler();
+
+    /**
+     * Constructor of the crawler iterator with a root path.
+     * Creates an iterator that returns all non-hidden files in all non-hidden (sub-)directories.
+     * @param root_path Starting point of the sub-tree to expand.
+     */
     Crawler(const Path& root_path);
+
+    /** Desctructor */
     virtual ~Crawler();
 
+    /**
+     * Sets (or change) the root path of the crawler instance.
+     * Also resets the iteration.
+     * @param root_path New root path to use for the iteration.
+     */
     void setRootPath(const Path& path);
 
     /**
@@ -69,6 +87,11 @@ public:
         list_files_ = b;
     }
 
+    /**
+     * Get the next path at the file system of the crawl.
+     * @param path [out] Next found path at the file system, if the function returns successfully.
+     * @return Whether a next path was found, otherwise the crawl is finished.
+     */
     bool nextPath(Path& path);
 
 private:

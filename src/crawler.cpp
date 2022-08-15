@@ -8,48 +8,27 @@ namespace tue
 namespace filesystem
 {
 
-/**
- * Default constructor of the crawler iterator class.
- * Creates an iterator that returns all non-hidden files in all non-hidden (sub-)directories.
- * @note Root path must be set usng #setRootPath before usage.
- */
 Crawler::Crawler() : recursive_(true), ignore_hidden_dirs_(true), ignore_hidden_files_(true),
         list_dirs_(false), list_files_(true)
 {
 }
 
-/**
- * Constructor of the crawler iterator with a root path.
- * Creates an iterator that returns all non-hidden files in all non-hidden (sub-)directories.
- * @param root_path Starting point of the sub-tree to expand.
- */
 Crawler::Crawler(const Path& root_path) : recursive_(true), ignore_hidden_dirs_(true),
         ignore_hidden_files_(true), list_dirs_(false), list_files_(true)
 {
     setRootPath(root_path);
 }
 
-/** Desctructor. */
 Crawler::~Crawler()
 {
 }
 
-/**
- * Sets (or change) the root path of the crawler instance.
- * Also resets the iteration.
- * @param root_path New root path to use for the iteration.
- */
 void Crawler::setRootPath(const Path& root_path)
 {
     boost::filesystem::path p(root_path.string());
     it_dir_ = boost::filesystem::recursive_directory_iterator(p);
 }
 
-/**
- * Get the next path at the file system of the crawl.
- * @param path [out] Next found path at the file system, if the function returns successfully.
- * @return Whether a next path was found, otherwise the crawl is finished.
- */
 bool Crawler::nextPath(Path& path)
 {
     boost::filesystem::recursive_directory_iterator end;
