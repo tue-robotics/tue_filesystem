@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(tue_filesystem)
 
+add_compile_options(-Wall -Werror=all)
+add_compile_options(-Wextra -Werror=extra)
+
 find_package(catkin REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem)
 
