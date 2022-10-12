@@ -5,7 +5,7 @@ add_compile_options(-Wall -Werror=all)
 add_compile_options(-Wextra -Werror=extra)
 
 find_package(catkin REQUIRED)
-find_package(Boost REQUIRED COMPONENTS system filesystem)
+find_package(Boost REQUIRED COMPONENTS filesystem)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -15,6 +15,8 @@ catkin_package(
 
 include_directories(
     include
+    SYSTEM
+    ${Boost_INCLUDE_DIRS}
 )
 
 # to show header files in Qt Creator
@@ -27,13 +29,9 @@ add_library(tue_filesystem
     ${HEADER_FILES}
 )
 
-# Specify libraries to link a library or executable target against
-target_link_libraries(tue_filesystem
-   ${Boost_LIBRARIES}
-)
+target_compile_definitions(tue_filesystem PRIVATE BOOST_FILESYSTEM_NO_DEPRECATED)
+target_link_libraries(tue_filesystem ${Boost_LIBRARIES})
 
 # Declare test
 add_executable(test_crawler test/test_crawler.cpp)
-
-# Specify libraries to link a library or executable target against
 target_link_libraries(test_crawler tue_filesystem)
