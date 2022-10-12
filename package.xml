@@ -6,7 +6,7 @@
 
   <name>tue_filesystem</name>
   <version>0.0.0</version>
-  <description>The tue_filesystem package</description>
+  <description>Wrapper around the boost filesystem library</description>
 
   <maintainer email="S.v.d.Dries@tue.nl">Sjoerd van den Dries</maintainer>
 
