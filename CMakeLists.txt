@@ -35,3 +35,8 @@ target_link_libraries(tue_filesystem ${Boost_LIBRARIES})
 # Declare test
 add_executable(test_crawler test/test_crawler.cpp)
 target_link_libraries(test_crawler tue_filesystem)
+
+if (CATKIN_ENABLE_TESTING)
+  find_package(catkin_lint_cmake REQUIRED)
+  catkin_add_catkin_lint_test("-W2")
+endif()
