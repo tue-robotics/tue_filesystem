@@ -6,13 +6,15 @@
 
   <name>tue_filesystem</name>
   <version>0.0.0</version>
-  <description>The tue_filesystem package</description>
+  <description>Wrapper around the boost filesystem library</description>
 
   <maintainer email="S.v.d.Dries@tue.nl">Sjoerd van den Dries</maintainer>
 
   <license>TODO</license>
 
   <buildtool_depend>catkin</buildtool_depend>
+
+  <test_depend>catkin_lint_cmake</test_depend>
 
   <export>
     <rosdoc config="rosdoc.yaml" />

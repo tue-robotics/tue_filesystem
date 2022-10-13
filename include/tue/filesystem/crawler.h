@@ -40,7 +40,7 @@ public:
      * Also resets the iteration.
      * @param root_path New root path to use for the iteration.
      */
-    void setRootPath(const Path& path);
+    void setRootPath(const Path& root_path);
 
     /**
      * Enable or disable iterating over sub-directories.
