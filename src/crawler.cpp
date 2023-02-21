@@ -1,7 +1,8 @@
 /** @file crawler.cpp Implementation of the file system crawler. */
 
 #include "tue/filesystem/crawler.h"
-#include <iostream>
+
+#include <console_bridge/console.h>
 
 namespace tue
 {
@@ -75,7 +76,7 @@ bool Crawler::nextPath(Path& path)
             // We couldn't access the next item in the collection, so we assume it refers to a directory that we can't
             // access and we ask the iterator class not to navigate in that directory but skip to the next element.
 
-            std::cout << ex.what() << std::endl;
+            CONSOLE_BRIDGE_logError(ex.what());
             it_dir_.no_push();
         }
 

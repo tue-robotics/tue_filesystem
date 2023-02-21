@@ -5,17 +5,19 @@ add_compile_options(-Wall -Werror=all)
 add_compile_options(-Wextra -Werror=extra)
 
 find_package(catkin REQUIRED)
+find_package(console_bridge REQUIRED)
 find_package(Boost REQUIRED COMPONENTS filesystem)
 
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  DEPENDS Boost
+  DEPENDS Boost console_bridge
 )
 
 include_directories(
     include
     SYSTEM
+    ${console_bridge_INCLUDE_DIRS}
     ${Boost_INCLUDE_DIRS}
 )
 
@@ -30,7 +32,7 @@ add_library(${PROJECT_NAME}
 )
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE BOOST_FILESYSTEM_NO_DEPRECATED)
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${console_bridge_LIBRARIES} ${Boost_LIBRARIES})
 
 # Declare test
 add_executable(test_crawler test/test_crawler.cpp)

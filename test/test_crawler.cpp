@@ -2,9 +2,14 @@
 
 #include <iostream>
 
-int main()
+int main(int argc, char** argv)
 {
-    tue::filesystem::Crawler crawler(".");
+    std::string path(".");
+    if (argc > 1)
+        // Take the last provided path
+        path = argv[argc-1];
+
+    tue::filesystem::Crawler crawler(path);
     crawler.setListDirectories();
 
     tue::filesystem::Path p;
