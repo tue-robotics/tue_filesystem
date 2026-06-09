@@ -8,17 +8,11 @@ namespace tue
 namespace filesystem
 {
 
-Path::Path()
-{
-}
+Path::Path() {}
 
-Path::Path(const std::string& path) : path_(path)
-{
-}
+Path::Path(const std::string& path) : path_(path) {}
 
-Path::~Path()
-{
-}
+Path::~Path() {}
 
 std::string Path::extension() const
 {
@@ -93,5 +87,5 @@ Path Path::join(const Path& sub_path) const
     return p;
 }
 
-} // end filesystem namespace
-} // end tue namespace
+} // namespace filesystem
+} // namespace tue

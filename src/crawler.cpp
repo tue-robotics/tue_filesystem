@@ -9,20 +9,18 @@ namespace tue
 namespace filesystem
 {
 
-Crawler::Crawler() : recursive_(true), ignore_hidden_dirs_(true), ignore_hidden_files_(true),
-        list_dirs_(false), list_files_(true)
+Crawler::Crawler() :
+    recursive_(true), ignore_hidden_dirs_(true), ignore_hidden_files_(true), list_dirs_(false), list_files_(true)
 {
 }
 
-Crawler::Crawler(const Path& root_path) : recursive_(true), ignore_hidden_dirs_(true),
-        ignore_hidden_files_(true), list_dirs_(false), list_files_(true)
+Crawler::Crawler(const Path& root_path) :
+    recursive_(true), ignore_hidden_dirs_(true), ignore_hidden_files_(true), list_dirs_(false), list_files_(true)
 {
     setRootPath(root_path);
 }
 
-Crawler::~Crawler()
-{
-}
+Crawler::~Crawler() {}
 
 void Crawler::setRootPath(const Path& root_path)
 {
@@ -34,7 +32,7 @@ bool Crawler::nextPath(Path& path)
 {
     boost::filesystem::recursive_directory_iterator end;
 
-    while(it_dir_ != end)
+    while (it_dir_ != end)
     {
         // Compute whether the current name should be returned to the caller.
         bool found = false;
@@ -71,7 +69,7 @@ bool Crawler::nextPath(Path& path)
         {
             ++it_dir_;
         }
-        catch(std::exception& ex)
+        catch (std::exception& ex)
         {
             // We couldn't access the next item in the collection, so we assume it refers to a directory that we can't
             // access and we ask the iterator class not to navigate in that directory but skip to the next element.
@@ -87,5 +85,5 @@ bool Crawler::nextPath(Path& path)
     return false;
 }
 
-} // end filesystem namespace
-} // end tue namespace
+} // namespace filesystem
+} // namespace tue
