@@ -3,8 +3,8 @@
 
 /** @file path.h File system path class. */
 
-#include <ctime>
 #include <string>
+#include <ctime>
 
 namespace tue
 {
@@ -18,20 +18,22 @@ namespace filesystem
 class Path
 {
 public:
-    //    /** Default constructor, without setting a valid path. */
+//    /** Default constructor, without setting a valid path. */
     Path();
 
-    //    /**
-    //     * Regular constructor
-    //     * @param path Path to set.
-    //     */
+//    /**
+//     * Regular constructor
+//     * @param path Path to set.
+//     */
     Path(const std::string& path);
 
     /**
      * Overloaded constructor for `char*` paths.
      * @param path Path to set in the object.
      */
-    Path(const char* path) : path_(path) {}
+    Path(const char* path) : path_(path)
+    {
+    }
 
     /** Destructor */
     virtual ~Path();
@@ -40,7 +42,10 @@ public:
      * Get the complete path.
      * @return The entire path, as stored in in the object.
      */
-    const std::string& string() const { return path_; }
+    const std::string& string() const
+    {
+        return path_;
+    }
 
     /**
      * Get the last extension of the path if available.
@@ -108,8 +113,8 @@ public:
      */
     Path join(const Path& path) const;
 
-    //    /** Support printing the path. */
-    friend std::ostream& operator<<(std::ostream& out, const Path& p)
+//    /** Support printing the path. */
+    friend std::ostream& operator<< (std::ostream& out, const Path& p)
     {
         out << p.path_;
         return out;
@@ -119,7 +124,7 @@ private:
     std::string path_; ///< Text of the file system path.
 };
 
-} // namespace filesystem
-} // namespace tue
+} // end filesystem namespace
+} // end tue namespace
 
 #endif
